@@ -1,4 +1,3 @@
-import React from "react";
 import { type BookDoc } from "../store/useBookStore";
 import { motion } from "framer-motion";
 
