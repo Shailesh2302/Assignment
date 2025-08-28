@@ -4,6 +4,8 @@ import BookCard from "../components/BookCard";
 import BookModal from "../components/BookModal";
 import { motion, AnimatePresence } from "framer-motion";
 
+
+
 export default function App() {
   const {
     query,
