@@ -1,4 +1,4 @@
-import {create} from "zustand";
+import { create } from "zustand";
 import axios from "axios";
 
 export interface BookDoc {
@@ -62,16 +62,22 @@ export const useBookStore = create<State>((set, get) => ({
         page: String(page),
       });
       // limit handled on frontend by slicing; API returns many docs
-      const res = await axios.get(`https://openlibrary.org/search.json?${params.toString()}`);
+      const res = await axios.get(
+        `https://openlibrary.org/search.json?${params.toString()}`
+      );
       const data = res.data;
-      set((s: { books: any; }) => ({
+      set((s: State) => ({
         books: reset ? data.docs : [...s.books, ...data.docs],
         numFound: data.numFound || 0,
         page: page + 1,
         loading: false,
       }));
-    } catch (err: any) {
-      set({ error: err.message || "Failed to fetch", loading: false });
+    } catch (err: unknown) {
+      let message = "Failed to fetch";
+      if (err instanceof Error) {
+        message = err.message;
+      }
+      set({ error: message, loading: false });
     }
   },
 
@@ -81,8 +87,14 @@ export const useBookStore = create<State>((set, get) => ({
 
   toggleFav: (key) => {
     set((s) => {
-      const next = s.favorites.includes(key) ? s.favorites.filter(k => k !== key) : [...s.favorites, key];
-      try { localStorage.setItem(LOCAL_FAV, JSON.stringify(next)); } catch {}
+      const next = s.favorites.includes(key)
+        ? s.favorites.filter((k) => k !== key)
+        : [...s.favorites, key];
+      try {
+        localStorage.setItem(LOCAL_FAV, JSON.stringify(next));
+      } catch {
+        console.log("error occur");
+      }
       return { favorites: next };
     });
   },

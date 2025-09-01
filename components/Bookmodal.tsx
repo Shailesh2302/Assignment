@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { BookDoc } from "../store/useBookStore";
+import type { BookDoc } from "../store/useBookStore.ts";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 

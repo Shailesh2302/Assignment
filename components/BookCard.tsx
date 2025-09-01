@@ -1,4 +1,4 @@
-import { type BookDoc } from "../store/useBookStore";
+import { type BookDoc } from "../store/useBookStore.ts";
 import { motion } from "framer-motion";
 
 interface Props {

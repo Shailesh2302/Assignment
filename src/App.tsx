@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useBookStore } from "../store/useBookStore";
-import BookCard from "../components/BookCard";
-import BookModal from "../components/BookModal";
+import { useBookStore } from "../store/useBookStore.ts";
+import BookCard from "../components/BookCard.tsx";
+import BookModal from "../components/BookModal.tsx";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
